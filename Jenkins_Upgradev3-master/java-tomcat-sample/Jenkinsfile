@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh 'mvn -f Jenkins_Upgradev3-master/java-tomcat-sample/pom.xml clean package'
+                bat label: 'Build', script: 'mvn -f Jenkins_Upgradev3-master\\java-tomcat-sample\\pom.xml clean package'
             }
             post {
                 success {
@@ -15,9 +15,7 @@ pipeline {
         stage('Deploy in Staging Environment'){
             steps{
                 build job: 'Deploy_Application_Staging_Env'
-
             }
-            
         }
         stage('Deploy to Production'){
             steps{
